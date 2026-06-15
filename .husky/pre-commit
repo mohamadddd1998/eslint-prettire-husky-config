@@ -1,0 +1,8 @@
+# فایل: .husky/pre-commit
+
+# چاپ یک پیام متنی در ترمینال برای اطلاع‌رسانی به توسعه‌دهنده
+echo "Running pre-commit checks..."
+
+# اجرای اسکریپت lint-stage پروژه (که در package.json تعریف شده است)
+# اگر lint-stage پاس نشوند، کامیت متوقف می‌شود
+npm run lint-staged
