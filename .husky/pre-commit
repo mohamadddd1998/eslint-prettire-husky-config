@@ -3,7 +3,21 @@
 # چاپ یک پیام متنی در ترمینال برای اطلاع‌رسانی به توسعه‌دهنده
 echo "Running pre-commit checks..."
 
+
+# اسکریپت بش (Bash) برای جلوگیری از کامیت فایل‌های محیطی و حساس
+# دریافت لیست فایل‌های اضافه شده به استیج
+STAGED_FILES=$(git diff --cached --name-only)
+
+# بررسی وجود فایل .env در میان فایل‌های استیج شده
+if echo "$STAGED_FILES" | grep -q "\.env"; then
+  echo "❌ Error: You are trying to commit a .env file!"
+  echo "Please run 'git reset HEAD <file>' to unstage it."
+  # خروج با کد خطا برای متوقف کردن کامیت
+  exit 1
+fi
+
 # اجرای اسکریپت lint-stage پروژه (که در package.json تعریف شده است)
-# اگر lint-stage پاس نشوند، کامیت متوقف می‌شود
-# npx lint-staged
-npm exec lint-staged
+# اگر lint-stage شکست خورد ، کامیت متوقف می‌شود
+npx lint-staged
+
+
