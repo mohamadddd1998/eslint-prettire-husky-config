@@ -1,122 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+// ایمپورت کردن کتابخانه ری‌اکت
+import React from 'react';
+import hero from './assets/hero.png';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+// تعریف تایپ برای پراپ‌های کامپوننت کارت
+interface UserCardProps {
+  // نام کاربر
+  name?: string;
+  // نقش یا تخصص کاربر
+  role?: string;
 }
 
-export default App
+// تعریف کامپوننت با استفاده از تایپ اسکریپت
+const App: React.FC<UserCardProps> = ({ name = 'ali', role = 'admin' }) => {
+  return (
+    // کلاس‌ها توسط پلاگین به صورت خودکار مرتب شده‌اند:
+    // ابتدا layout (flex)، سپس spacing (p-6)، بعد border/radius و در نهایت رنگ‌ها و افکت‌ها
+    <div className="rounded-2xl flex flex-col items-center justify-center  border border-gray-200 bg-white p-6 shadow-md transition-all hover:shadow-lg">
+      {/* مرتب‌سازی کلاس‌های تصویر: سایز، گردی، حاشیه پایین */}
+      <img src={hero} alt="User Avatar" className="mb-4 h-16 w-16 rounded-full object-cover" />
+      {/* کلاس‌های تایپوگرافی متن: سایز فونت، وزن فونت، رنگ */}
+      <h2 className="text-lg font-bold text-gray-800">{name}</h2>
+      {/* استایل‌دهی به متن نقش کاربر با رنگ ملایم‌تر */}
+      <p className="text-sm font-medium text-gray-500">{role}</p>
+    </div>
+  );
+};
+export default App;

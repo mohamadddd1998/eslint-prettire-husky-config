@@ -1,15 +1,18 @@
 {
   "name": "config-code",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "dev": "vite",
+    "format": "prettier --write \"{src/**/*.{js,jsx,ts,tsx,css,md},package.json}\"",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
+    "prepare": "husky",
     "preview": "vite preview",
     "test": "vitest",
-    "prepare": "husky"
+    "validate": "npm run lint && npm run format"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
@@ -21,8 +24,10 @@
     ]
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.1",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.2",
@@ -33,12 +38,16 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.4",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-packagejson": "^3.0.2",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12"
