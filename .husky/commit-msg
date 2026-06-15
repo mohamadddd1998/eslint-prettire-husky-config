@@ -1,0 +1,4 @@
+# فایل: .husky/commit-msg
+# این دستور پیام کامیتی که کاربر نوشته (آرگومان $1) را به commitlint می‌دهد تا بررسی شود
+
+npx --no-install commitlint --edit "$1"

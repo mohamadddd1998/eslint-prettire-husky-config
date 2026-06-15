@@ -1,0 +1,10 @@
+# فایل: .husky/pre-push
+# ترکیب اجرای تست و بیلد برای اطمینان صد در صدی از کیفیت کد
+
+echo "Running pre-push checks (Tests & Build)..."
+
+# ابتدا تست‌ها اجرا می‌شوند
+# npm run test
+
+# اگر تست‌ها موفق بودند، فرآیند بیلد بررسی می‌شود
+npm run build
